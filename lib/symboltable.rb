@@ -1,6 +1,6 @@
-# A Hash that forces all keys to be symbols.
+# A Symbols-only Hash for Ruby.
 #
-# See http://github.com/mjijackson/symboltable for more information.
+# See http://github.com/mjijackson/symboltable
 class SymbolTable < Hash
 
   def initialize(hash=nil)
@@ -14,7 +14,7 @@ class SymbolTable < Hash
   end
 
   def key?(key)
-    super(key) || (valid_key?(key) && super(key.to_sym))
+    valid_key?(key) && super(key.to_sym)
   end
 
   def [](key)
