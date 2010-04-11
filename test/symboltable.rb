@@ -1,5 +1,5 @@
-libdir = File.dirname(File.dirname(__FILE__)) + '/lib'
-$LOAD_PATH.unshift(libdir) unless $LOAD_PATH.include?(libdir)
+lib = File.dirname(File.dirname(__FILE__)) + '/lib'
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 require 'test/unit'
 require 'symboltable'
@@ -23,9 +23,6 @@ class SymbolTableTest < Test::Unit::TestCase
     t['b'] = 1
     assert_equal(1, t[:b])
     assert_equal(1, t['b'])
-
-    assert_equal([:a, :b], t.keys)
-    assert_equal([1, 1], t.values)
   end
 
   def test_store
@@ -38,9 +35,6 @@ class SymbolTableTest < Test::Unit::TestCase
     t.store('b', 1)
     assert_equal(1, t[:b])
     assert_equal(1, t['b'])
-
-    assert_equal([:a, :b], t.keys)
-    assert_equal([1, 1], t.values)
   end
 
   def test_update
@@ -53,9 +47,6 @@ class SymbolTableTest < Test::Unit::TestCase
     t.update('b' => 1)
     assert_equal(1, t[:b])
     assert_equal(1, t['b'])
-
-    assert_equal([:a, :b], t.keys)
-    assert_equal([1, 1], t.values)
   end
 
   def test_merge!
@@ -68,9 +59,6 @@ class SymbolTableTest < Test::Unit::TestCase
     t.merge!('b' => 1)
     assert_equal(1, t[:b])
     assert_equal(1, t['b'])
-
-    assert_equal([:a, :b], t.keys)
-    assert_equal([1, 1], t.values)
   end
 
   def test_method_missing
@@ -80,9 +68,6 @@ class SymbolTableTest < Test::Unit::TestCase
     assert_equal(1, t[:a])
     assert_equal(1, t['a'])
     assert_equal(1, t.a)
-
-    assert_equal([:a], t.keys)
-    assert_equal([1], t.values)
   end
 
   def test_nested_tables
