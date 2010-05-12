@@ -1,7 +1,5 @@
-+++ SymbolTable +++
-
-SymbolTable is a handy little Ruby class that was conceived from the union of
-Hash and Symbol. SymbolTable directly extends Hash, but it stores all keys
+__SymbolTable__ is a handy little Ruby class that was conceived from the union of
+[Hash][hash] and [Symbol[symbol]. SymbolTable directly extends Hash, but it stores all keys
 internally as symbols. Any key that cannot be converted to a Symbol is not
 valid.
 
@@ -42,14 +40,16 @@ You get the idea. This kind of data structure is mainly useful for large
 configuration objects and the like, where you want to store a bunch of data and
 you don't want to have to remember later how you stored it.
 
-== Why?
+Why?
+----
 
 Mainly just for fun, and because I sometimes miss the automatic and ubiquitous
 type conversion you get in PHP.
 
-== Installation
+Installation
+------------
 
-Using RubyGems:
+Using [RubyGems][rg]:
 
     $ sudo gem install symboltable
 
@@ -59,24 +59,6 @@ From a local copy:
     $ cd symboltable
     $ rake package && sudo rake install
 
-== License
-
-Copyright 2010 Michael Jackson
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+[hash]: http://ruby-doc.org/core/classes/Hash.html
+[symbol]: http://ruby-doc.org/core/classes/Symbol.html
+[rg]: http://rubygems.org/

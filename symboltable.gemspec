@@ -1,12 +1,12 @@
 Gem::Specification.new do |s|
   s.name = 'symboltable'
-  s.version = '0.2'
-  s.date = '2010-04-08'
+  s.version = '1.0.0'
+  s.date = '2010-05-12'
 
   s.summary = 'A Symbols-only Hash for Ruby'
   s.description = 'A Symbols-only Hash for Ruby'
 
-  s.author = 'Michael J. I. Jackson'
+  s.author = 'Michael Jackson'
   s.email = 'mjijackson@gmail.com'
 
   s.require_paths = %w< lib >
@@ -23,5 +23,5 @@ Gem::Specification.new do |s|
   s.rdoc_options = %w< --line-numbers --inline-source --title SymbolTable --main SymbolTable >
   s.extra_rdoc_files = %w< README >
 
-  s.homepage = 'http://github.com/mjijackson/symboltable'
+  s.homepage = 'http://mjijackson.com/symboltable'
 end
