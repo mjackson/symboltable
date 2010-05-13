@@ -1,5 +1,5 @@
 __SymbolTable__ is a handy little Ruby class that was conceived from the union of
-[Hash][hash] and [Symbol[symbol]. SymbolTable directly extends Hash, but it stores all keys
+[Hash][hash] and [Symbol][symbol]. SymbolTable directly extends Hash, but it stores all keys
 internally as symbols. Any key that cannot be converted to a Symbol is not
 valid.
 
@@ -44,7 +44,7 @@ Why?
 ----
 
 Mainly just for fun, and because I sometimes miss the automatic and ubiquitous
-type conversion you get in PHP.
+type conversion you get in [PHP][php].
 
 Installation
 ------------
@@ -62,3 +62,4 @@ From a local copy:
 [hash]: http://ruby-doc.org/core/classes/Hash.html
 [symbol]: http://ruby-doc.org/core/classes/Symbol.html
 [rg]: http://rubygems.org/
+[php]: http://php.net/
