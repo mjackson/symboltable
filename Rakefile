@@ -3,9 +3,6 @@ require 'rake/testtask'
 
 task :default => :test
 
-CLEAN.include %w< doc >
-CLOBBER.include %w< dist >
-
 # TESTS #######################################################################
 
 Rake::TestTask.new(:test) do |t|
@@ -14,12 +11,13 @@ end
 
 # DOCS ########################################################################
 
-desc "Generate API documentation (in doc)"
-task :doc => FileList['lib/**/*.rb'] do |t|
-  rm_rf 'doc'
+desc "Generate API documentation"
+task :api => FileList['lib/**/*.rb'] do |t|
+  output_dir = ENV['OUTPUT_DIR'] || 'api'
+  rm_rf output_dir
   sh((<<-SH).gsub(/[\s\n]+/, ' ').strip)
   hanna
-    --op doc
+    --op #{output_dir}
     --promiscuous
     --charset utf8
     --fmt html
@@ -31,6 +29,8 @@ task :doc => FileList['lib/**/*.rb'] do |t|
     #{t.prerequisites.join(' ')}
   SH
 end
+
+CLEAN.include 'api'
 
 # PACKAGING & INSTALLATION ####################################################
 
@@ -65,3 +65,5 @@ if defined?(Gem)
     sh "gem push #{package('.gem')}"
   end
 end
+
+CLOBBER.include 'dist'
