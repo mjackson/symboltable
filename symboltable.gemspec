@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'symboltable'
-  s.version = '1.0.0'
+  s.version = '1.0.1'
   s.date = '2010-05-12'
 
   s.summary = 'A Symbols-only Hash for Ruby'
