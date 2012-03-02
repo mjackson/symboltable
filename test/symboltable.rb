@@ -108,4 +108,9 @@ class SymbolTableTest < Test::Unit::TestCase
     assert_equal([2],  b.values)
   end
 
+  def test_to_hash
+    t = SymbolTable[:a, 1]
+    assert_equal(t.to_hash.class, Hash)
+    assert_equal(t.to_hash[:a], 1)
+  end
 end
