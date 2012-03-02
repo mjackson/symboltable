@@ -56,4 +56,9 @@ class SymbolTable < Hash
       super(sym, *args)
     end
   end
+
+  # Returns a Hash
+  def to_hash
+    Hash[self]
+  end
 end
