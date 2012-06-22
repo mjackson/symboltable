@@ -6,6 +6,12 @@ require 'symboltable'
 
 class SymbolTableTest < Test::Unit::TestCase
 
+  class A < SymbolTable
+  end
+
+  class B < SymbolTable
+  end
+
   def test_empty
     t = SymbolTable.new
 
@@ -35,6 +41,15 @@ class SymbolTableTest < Test::Unit::TestCase
     t.store('b', 1)
     assert_equal(1, t[:b])
     assert_equal(1, t['b'])
+  end
+
+  def test_store_symboltable
+    a = A.new
+    b = B.new
+
+    a.a = b
+
+    assert_equal(B, a.a.class)
   end
 
   def test_update

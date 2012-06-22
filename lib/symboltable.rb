@@ -25,7 +25,7 @@ class SymbolTable < Hash
   # Sets the value of the given +key+ to +val+.
   def store(key, val)
     if valid_key?(key)
-      val = self.class.new(val) if Hash === val && !(self.class === val)
+      val = self.class.new(val) if Hash === val && !(SymbolTable === val)
       super(key.to_sym, val)
     end
   end
