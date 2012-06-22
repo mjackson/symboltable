@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>SymbolTable by mjijackson</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>SymbolTable</h1>
+        <p>A Symbols-only Hash for Ruby</p>
+
+        <p class="view"><a href="https://github.com/mjijackson/symboltable">View the Project on GitHub <small>mjijackson/symboltable</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/mjijackson/symboltable/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/mjijackson/symboltable/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/mjijackson/symboltable">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <p><strong>SymbolTable</strong> is a handy little Ruby class that was conceived from the union
+of <code>Hash</code> and <code>Symbol</code>. SymbolTable directly extends <code>Hash</code>, but it stores all
+keys internally as symbols. Any key that cannot be converted to a <code>Symbol</code> is
+not valid.</p>
+
+<p>While this may seem restrictive, it does have the nice side effect of making
+all keys slightly more memorable and usable. For example, values may be set
+and retrieved using any key that resolves to the same symbol.</p>
+
+<div class="highlight">
+<pre><span class="n">h</span> <span class="o">=</span> <span class="no">Hash</span><span class="o">.</span><span class="n">new</span>
+<span class="n">h</span><span class="o">[</span><span class="ss">:a</span><span class="o">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">h</span><span class="o">[</span><span class="ss">:a</span><span class="o">]</span>       <span class="c1"># =&gt; 1</span>
+<span class="n">h</span><span class="o">[</span><span class="s1">'a'</span><span class="o">]</span>      <span class="c1"># =&gt; nil</span>
+<span class="n">h</span><span class="o">.</span><span class="n">a</span>         <span class="c1"># =&gt; NoMethodError: undefined method `a' for {}:Hash</span>
+
+<span class="nb">require</span> <span class="s1">'symboltable'</span>
+
+<span class="n">t</span> <span class="o">=</span> <span class="no">SymbolTable</span><span class="o">.</span><span class="n">new</span>
+<span class="n">t</span><span class="o">[</span><span class="ss">:a</span><span class="o">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">t</span><span class="o">[</span><span class="ss">:a</span><span class="o">]</span>       <span class="c1"># =&gt; 1</span>
+<span class="n">t</span><span class="o">[</span><span class="s1">'a'</span><span class="o">]</span>      <span class="c1"># =&gt; 1</span>
+<span class="n">t</span><span class="o">.</span><span class="n">a</span>         <span class="c1"># =&gt; 1</span>
+<span class="n">t</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="mi">2</span>     <span class="c1"># =&gt; 2</span>
+</pre>
+</div>
+
+
+<p>Also, because <code>SymbolTable</code> subclasses <code>Hash</code>, you get all the nice methods of
+<code>Hash</code> for free.</p>
+
+<div class="highlight">
+<pre><span class="n">t</span><span class="o">.</span><span class="n">keys</span>      <span class="c1"># =&gt; [:a, :b]</span>
+<span class="n">t</span><span class="o">.</span><span class="n">values</span>    <span class="c1"># =&gt; [1, 2]</span>
+
+<span class="n">t</span><span class="o">.</span><span class="n">merge!</span><span class="p">(</span><span class="s1">'c'</span> <span class="o">=&gt;</span> <span class="mi">3</span><span class="p">,</span> <span class="ss">:d</span> <span class="o">=&gt;</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">t</span><span class="o">.</span><span class="n">keys</span>      <span class="c1"># =&gt; [:a, :b, :c, :d]</span>
+<span class="n">t</span><span class="o">.</span><span class="n">values</span>    <span class="c1"># =&gt; [1, 2, 3, 4]</span>
+
+<span class="n">t</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="o">|</span>
+  <span class="nb">puts</span> <span class="s2">"</span><span class="si">#{</span><span class="n">k</span><span class="si">}</span><span class="s2"> = </span><span class="si">#{</span><span class="n">v</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+</pre>
+</div>
+
+
+<p>You get the idea. This kind of data structure is mainly useful for large
+configuration objects and the like, where you want to store a bunch of data and
+you don't want to have to remember later how you stored it.</p>
+
+<h2>Why?</h2>
+
+<p>Mainly just for fun, and because I sometimes miss the automatic and ubiquitous
+type conversion you get in PHP.</p>
+
+<h2>Installation</h2>
+
+<p>Using <a href="http://rubygems.org">RubyGems</a>:</p>
+
+<pre><code>$ sudo gem install symboltable
+</code></pre>
+
+<p>From a local copy:</p>
+
+<pre><code>$ git clone git://github.com/mjijackson/symboltable.git
+$ cd symboltable
+$ rake package &amp;&amp; sudo rake install
+</code></pre>
+
+<h2>License</h2>
+
+<p>Copyright 2012 Michael Jackson</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.</p>
+
+<p>The software is provided "as is", without warranty of any kind, express or
+implied, including but not limited to the warranties of merchantability,
+fitness for a particular purpose and non-infringement. In no event shall the
+authors or copyright holders be liable for any claim, damages or other
+liability, whether in an action of contract, tort or otherwise, arising from,
+out of or in connection with the software or the use or other dealings in
+the software.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/mjijackson">mjijackson</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
