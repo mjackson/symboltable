@@ -1,6 +1,3 @@
-# A Symbols-only Hash for Ruby.
-#
-# http://mjijackson.com/symboltable
 class SymbolTable < Hash
   def initialize(hash=nil)
     super()
